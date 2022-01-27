@@ -59,13 +59,13 @@ async def rename_handler(client: Client, msg: Message) -> None:
     
     file_id = await client.get_file_id(rep_msg)
     if file_id is not None:
-        rmsg = f"""Added the Rename to queue.
+        rmsg = f"""Yeniden adlandırma kuyruğuna eklendi.
         DC ID   :- {file_id.dc_id}
         Media ID:- {file_id.media_id}
         """
         await msg.reply_text(rmsg)
     
-    track_msg = f'Added Rename Task\n\nUsername: @{msg.from_user.username}\n\nName: {msg.from_user.mention(style="md")}\n\n'
+    track_msg = f'Yeniden adlandırma görevi eklendi.\n\nKullanıcı adı: @{msg.from_user.username}\n\nİsim: {msg.from_user.mention(style="md")}\n\n'
     track_msg += f'UserID: `{msg.from_user.id}`\n'
     await client.send_track(track_msg)
     await asyncio.sleep(2)
@@ -101,15 +101,15 @@ async def handle_queue(client: Client, msg: Message) -> None:
     from_id = msg.from_user.id
     max_size = get_var("MAX_QUEUE_SIZE")
 
-    fmsg = f"Total Tasks in Queue:- {q_len}\nCapacity:- {max_size}\nCurrently Executing:- {currently_exec}\n\n"
+    fmsg = f"Kuyruktaki toplam görevler:- {q_len}\nKapasite:- {max_size}\nŞu an çalışan:- {currently_exec}\n\n"
 
     j = 1
     for i in EM.all_maneuvers_log:
         if i.sender_id == from_id:
             if i.is_executing:
-                fmsg += f"Your Task Is Executing\nTask Unique Number {i._unique_id}\n\n"
+                fmsg += f"Göreviniz çalıştırılıyor\nBenzersiz Görev Numarası {i._unique_id}\n\n"
             if i.is_pending:
-                fmsg += f"Your Task Number in Queue: {j}\nTask Unique Number {i._unique_id}\n\n"
+                fmsg += f"Görevinizin kuyruktaki sırası: {j}\nBenzersiz Görev Numarası {i._unique_id}\n\n"
         
         if i.is_pending:
             j += 1
