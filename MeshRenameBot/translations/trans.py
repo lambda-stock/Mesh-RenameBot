@@ -1,6 +1,6 @@
-current_lang = "en"
-if current_lang == "en":
-    from .en import EnTrans as Trans
+current_lang = "tr"
+if current_lang == "tr":
+    from .tr import TrTrans as Trans
 else:
     ...
 #def get_trans(title, lang = None) -> str:
